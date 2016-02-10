@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Enter 2 Numbers"
-        android:id="@+id/textView"
+        android:id="@+id/entryTitle"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp" />
 

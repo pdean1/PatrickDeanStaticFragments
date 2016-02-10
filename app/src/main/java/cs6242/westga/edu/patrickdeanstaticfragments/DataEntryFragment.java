@@ -21,6 +21,7 @@ public class DataEntryFragment extends Fragment {
     private EditText etNumber1;
     private EditText etNumber2;
     private DataEntryListener listener;
+    private View     vInfaltedView;
     public interface DataEntryListener {
         void onDataEntry(double one, double two);
     }
@@ -32,15 +33,16 @@ public class DataEntryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.etNumber1 = (EditText) container.findViewById(R.id.number_1);
-        this.etNumber2 = (EditText) container.findViewById(R.id.number_2);
-        Button btnMultiply = (Button) container.findViewById(R.id.multiply_button);
+        this.vInfaltedView = inflater.inflate(R.layout.fragment_data_entry, container, false);
+        this.etNumber1 = (EditText) this.vInfaltedView.findViewById(R.id.number_1);
+        this.etNumber2 = (EditText) this.vInfaltedView.findViewById(R.id.number_2);
+        Button btnMultiply = (Button) this.vInfaltedView.findViewById(R.id.multiply_button);
         btnMultiply.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 multiplyButtonClicked(v);
             }
         });
-        return inflater.inflate(R.layout.fragment_data_entry, container, false);
+        return this.vInfaltedView;
     }
 
     /**
@@ -51,20 +53,20 @@ public class DataEntryFragment extends Fragment {
      */
     @Override
     public void onAttach(Context context) {
-        super.onAttach(context);
         this.listener = (DataEntryListener) context;
+        super.onAttach(context);
     }
 
     public void multiplyButtonClicked(View v) {
-        TextView tvTitle = (TextView) v.findViewById(R.id.textView);
+        TextView tvTitle = (TextView) this.vInfaltedView.findViewById(R.id.entryTitle);
         try {
-            double number1 = Double.parseDouble(this.etNumber1.getText().toString());
-            this.listener.onDataEntry(number1, number1);
+            Double number1 = Double.parseDouble(this.etNumber1.getText().toString());
+            Double number2 = Double.parseDouble(this.etNumber2.getText().toString());
+            listener.onDataEntry(number1, number2);
             tvTitle.setTextColor(Color.BLACK);
         } catch (Exception e) {
             tvTitle.setTextColor(Color.RED);
         }
-
     }
 
 }
