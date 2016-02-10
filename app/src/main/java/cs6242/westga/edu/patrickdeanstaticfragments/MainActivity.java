@@ -1,11 +1,8 @@
 package cs6242.westga.edu.patrickdeanstaticfragments;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,15 +14,6 @@ public class MainActivity extends AppCompatActivity implements DataEntryFragment
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -55,9 +43,20 @@ public class MainActivity extends AppCompatActivity implements DataEntryFragment
         DataDisplayFragment ddf =
                 (DataDisplayFragment)
                         getSupportFragmentManager().findFragmentById(R.id.dataDisplayFragment);
-        ddf.setdNum1(one);
-        ddf.setdNum2(two);
+        ddf.setNum1(one);
+        ddf.setNum2(two);
         ddf.multiply();
         ddf.displayProduct();
+    }
+
+    @Override
+    public void DisplayAdd(double a, double b) {
+        DisplayAddFragment daf =
+                (DisplayAddFragment)
+                        getSupportFragmentManager().findFragmentById(R.id.displayAdd);
+        daf.setNum1(a);
+        daf.setNum2(b);
+        daf.add();
+        daf.displaySum();
     }
 }

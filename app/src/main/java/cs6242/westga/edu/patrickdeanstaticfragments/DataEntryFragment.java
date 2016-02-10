@@ -22,9 +22,7 @@ public class DataEntryFragment extends Fragment {
     private EditText etNumber2;
     private DataEntryListener listener;
     private View     vInfaltedView;
-    public interface DataEntryListener {
-        void onDataEntry(double one, double two);
-    }
+
 
     public DataEntryFragment() {
     }
@@ -67,6 +65,12 @@ public class DataEntryFragment extends Fragment {
         } catch (Exception e) {
             tvTitle.setTextColor(Color.RED);
         }
+    }
+    /***********************************************************************************************
+     * INTERFACES                                                                                  *
+     **********************************************************************************************/
+    public interface DataEntryListener extends DataDisplayFragment.DataAddListener {
+        void onDataEntry(double one, double two);
     }
 
 }
